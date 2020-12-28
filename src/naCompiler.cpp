@@ -13,7 +13,7 @@ int main(int argc,char *argv[])
     unsigned char *srcC;
     long srcCLen=readBFile(argv[1],&srcC);
 
-    unsigned char apSrcC=pretreatment(srcC);// 预处理
+    unsigned char apSrcC=pretreatment(srcC,srcCLen);// 预处理
 
     return 0;
 }
