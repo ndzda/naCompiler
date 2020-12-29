@@ -9,10 +9,10 @@ bool inline isBlankChar(unsigned char c)
 
 const int macroNum = 2, macroMaxLen = 10;
 const unsigned char macroT[macroNum][macroMaxLen] = {
-    "include",// Reference a file 引用一个文件
-    "define"  // Definition identifier replacement 定义标识符替换
+    "include", // Reference a file 引用一个文件
+    "define"   // Definition identifier replacement 定义标识符替换
 };
-int processingMacro(const unsigned char *s)
+int processingMacro(const unsigned char *s, int &p)
 {
     bool flag[macroNum];
     memset(flag, 0, sizeof(flag));
@@ -21,10 +21,13 @@ int processingMacro(const unsigned char *s)
         for (int j = 0; j < macroNum; j++)
             if (!flag[j])
             {
-                if(macroT[j][i]==0)
+                if (macroT[j][i] == 0)
+                {
+                    p+=i;
                     return j;
-                else if(s[i]!=macroT[j][i])
-                    flag[j]=true;
+                }
+                else if (s[i] != macroT[j][i])
+                    flag[j] = true;
             }
     }
     return -1;
@@ -40,11 +43,11 @@ int pretreatment(const unsigned char *src, long len)
             {
                 startOfLine = false;
                 if (src[i] == '#')
-                    switch (processingMacro(src + i))
+                    switch (processingMacro(src + i, i))
                     {
-                        case 0:// include
+                    case 0: // include
                         break;
-                        case 1:// define
+                    case 1: // define
                         break;
                     }
             }
