@@ -21,7 +21,10 @@ void inline error(const char *s)
 
 long readBFile(const char *path, unsigned char **s)
 {
-    FILE *file = fopen(path, "r");
+    FILE *file;
+
+    if (fopen_s(&file, path, "r"))
+        return -1;
 
     fseek(file, 0, SEEK_END);
 
@@ -30,9 +33,9 @@ long readBFile(const char *path, unsigned char **s)
 
     rewind(file);
 
-    fread(*s,sizeof(char),fileSize,file);
+    fread(*s, sizeof(char), fileSize, file);
 
-    *((*s)+fileSize) = 0;
+    *((*s) + fileSize) = 0;
 
     if (fclose(file) == 0)
         return fileSize;

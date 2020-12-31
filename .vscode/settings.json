@@ -5,6 +5,11 @@
         "chrono": "cpp",
         "random": "cpp",
         "limits": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "*.tcc": "cpp",
+        "cstdlib": "cpp",
+        "memory": "cpp",
+        "string_view": "cpp",
+        "istream": "cpp"
     }
 }

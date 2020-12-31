@@ -6,6 +6,18 @@
 namespace nda
 {
     unsigned long inline max(unsigned long a, unsigned long b) { return (a > b ? a : b); }
+    static unsigned int log2(unsigned long x)
+    {
+        if (x <= 1)
+            return 0;
+        unsigned int ret = 0;
+        while (x > 1)
+        {
+            x >>= 1;
+            ret++;
+        }
+        return ret;
+    }
     /*
         Auto-expanding array
         Automatically expand when the visit value is higher than the capacity
@@ -17,28 +29,29 @@ namespace nda
     template <class T>
     class DArray
     {
-        unsigned long size;
+        unsigned long siz;
         T *a;
 
-        Darray()
+    public:
+        DArray()
         {
-            this.size = 2;
-            this.a = malloc(sizeof(T) << 1);
+            siz = 2;
+            a = (T *)malloc(sizeof(T) << 1);
         }
 
-        unsigned inline long size() { return this.size; }
+        unsigned inline long size() { return siz; }
 
-        void inline clear() { free(this.a); }
+        void inline clear() { free(a); }
 
         void inline expansion(unsigned long i)
         {
-            unsigned long nSize = nda::max(2 << ((unsigned long)log2(this.size)), i);
-            this.a = realloc(this.a, nSize * sizeof(T));
+            unsigned long nSize = nda::max(2 << nda::log2(siz), i);
+            a = realloc(a, nSize * sizeof(T));
         }
 
         T &operator[](unsigned long i)
         {
-            if (i >= this.size)
+            if (i >= siz)
                 expansion(i);
             else if (i < 0)
                 throw "Invalid array position.";

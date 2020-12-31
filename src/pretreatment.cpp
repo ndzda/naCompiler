@@ -1,4 +1,5 @@
 #include <cstring>
+#include "NDArray.cpp"
 
 bool startOfLine = true; // 在行首
 
@@ -23,7 +24,7 @@ int processingMacro(const unsigned char *s, int &p)
             {
                 if (macroT[j][i] == 0)
                 {
-                    p+=i;
+                    p += i;
                     return j;
                 }
                 else if (s[i] != macroT[j][i])
@@ -33,7 +34,10 @@ int processingMacro(const unsigned char *s, int &p)
     return -1;
 }
 
-int pretreatment(const unsigned char *src, long len)
+nda::DArray<char*>RefDocString;// Processed file 处理后的文件
+nda::DArray<long>RefDocLen;// The length of each string in the processed file array 处理后的文件数组中每一个字符串的长度
+
+unsigned char *pretreatment(const unsigned char *src, long &len)
 {
     for (int i = 0; i < len; i++)
     {
@@ -55,4 +59,5 @@ int pretreatment(const unsigned char *src, long len)
         else if (src[i] == '\n')
             startOfLine = true;
     }
+    return 0;
 }
