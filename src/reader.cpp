@@ -93,7 +93,7 @@ namespace nda
             return s;
         }
 
-        Keywords GetKeywords()// 检索关键字
+        Keywords GetKeywords() // 获取关键字
         {
             string s = GetIdentifier();
             if (s == "byte")
@@ -110,49 +110,49 @@ namespace nda
                 return DOUBLE;
             else if (s == "void")
                 return VOID;
-            else if (s == "THIS")
+            else if (s == "this")
                 return THIS;
-            else if (s == "IMPORT")
+            else if (s == "import")
                 return IMPORT;
-            else if (s == "INCLUDE")
+            else if (s == "include")
                 return INCLUDE;
-            else if (s == "CLASS")
+            else if (s == "class")
                 return CLASS;
-            else if (s == "PRIVATE")
+            else if (s == "private")
                 return PRIVATE;
-            else if (s == "PROTECTED")
+            else if (s == "protected")
                 return PROTECTED;
-            else if (s == "PUBLIC")
+            else if (s == "public")
                 return PUBLIC;
-            else if (s == "STRUCT")
+            else if (s == "struct")
                 return STRUCT;
-            else if (s == "ENUM")
+            else if (s == "enum")
                 return ENUM;
-            else if (s == "CONST")
+            else if (s == "const")
                 return CONST;
-            else if (s == "RETURN")
+            else if (s == "return")
                 return RETURN;
-            else if (s == "GOTO")
+            else if (s == "goto")
                 return GOTO;
-            else if (s == "IF")
+            else if (s == "if")
                 return IF;
-            else if (s == "ELSE")
+            else if (s == "else")
                 return ELSE;
-            else if (s == "SWITCH")
+            else if (s == "switch")
                 return SWITCH;
-            else if (s == "CASE")
+            else if (s == "case")
                 return CASE;
-            else if (s == "BREAK")
+            else if (s == "break")
                 return BREAK;
-            else if (s == "DEFAULT")
+            else if (s == "default")
                 return DEFAULT;
-            else if (s == "FOR")
+            else if (s == "for")
                 return FOR;
-            else if (s == "DO")
+            else if (s == "do")
                 return DO;
-            else if (s == "WHILE")
+            else if (s == "while")
                 return WHILE;
-            else if (s == "CONTINUE")
+            else if (s == "continue")
                 return CONTINUE;
             else
                 return nkw;
