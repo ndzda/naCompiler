@@ -157,6 +157,8 @@ namespace nda
             else
                 return nkw;
         }
+
+        
     };
 } // namespace nda
 
