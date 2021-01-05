@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "NDArray.cpp"
+#include "processor.cpp"
+
 namespace nda
 {
     using namespace std;
