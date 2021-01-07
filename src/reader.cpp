@@ -18,9 +18,9 @@ namespace nda
     }
     enum Keywords
     {
-        // 不是关键字
+        // Not a keyword 不是关键字
         nkw,
-        // 类型
+        // Value type 类型
         BYTE,
         SHORT,
         INT,
@@ -30,9 +30,9 @@ namespace nda
         VOID,
         // 引用
         THIS,
-        // 引入文件
+        // File association 文件关联
         IMPORT,
-        INCLUDE,
+        PACKAGE,
         // 类
         CLASS,
         PRIVATE,
@@ -58,6 +58,24 @@ namespace nda
         DO,
         WHILE,
         CONTINUE,
+        // Coroutines and threads 协程与线程
+        COROUTINE,
+        THREAD,
+        SLEEP,
+    };
+    enum Macro
+    {
+        // Not a macro 不是宏
+        nam,
+        // Macro 宏
+        INCLUDE,
+        DEFINE,
+        IFDEF,
+        IFNDEF,
+        IFComEnv,
+        ENDIF,
+        // Use bytecode or code directly 直接使用字节码或代码
+        DCODE,
     };
     /*
         Auxiliary class for reading nas source code
@@ -75,6 +93,23 @@ namespace nda
             a = (const char *)ss;
             p = 0;
             siz = len;
+        }
+
+        bool nFinishReading() { return p < siz; }// Not finished reading 没有读完
+
+        int pChar()// Determine whether a character is a macro or identifier
+        {
+            while(isBlankChar(a[p]))p++;
+            if(a[p]=='#')return 1;
+            else if(a[p]=='(')return 2;
+            else if(a[p]==')')return 3;
+            else if(a[p]=='{')return 4;
+            else if(a[p]=='}')return 5;
+            else if(a[p]=='[')return 6;
+            else if(a[p]==']')return 7;
+            else if(a[p]=='.')return 8;
+            else if(a[p]=='')
+            else return 0;
         }
 
         string GetIdentifier()
@@ -116,8 +151,8 @@ namespace nda
                 return THIS;
             else if (s == "import")
                 return IMPORT;
-            else if (s == "include")
-                return INCLUDE;
+            else if (s == "package")
+                return PACKAGE;
             else if (s == "class")
                 return CLASS;
             else if (s == "private")
@@ -156,11 +191,15 @@ namespace nda
                 return WHILE;
             else if (s == "continue")
                 return CONTINUE;
+            else if (s == "coroutine")
+                return COROUTINE;
+            else if (s == "thread")
+                return THREAD;
+            else if (s == "sleep")
+                return SLEEP;
             else
                 return nkw;
         }
-
-        
     };
 } // namespace nda
 
