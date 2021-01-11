@@ -14,7 +14,7 @@ namespace nda
     }
     bool inline isSeparator(char c)
     {
-        return (isBlankChar(c) || c == '=' || c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '!' || c == '&' || c == '|' || c == '^' || c == '~' || c == '?' || c == ':' || c == ';' || c == '{' || c == '}' || c == '(' || c == ')' || c == '[' || c == ']' || c == '#' || c == '<' || c == '>' || c == '\'' || c == '\"');
+        return (isBlankChar(c) || c == '=' || c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '!' || c == '&' || c == '|' || c == '^' || c == '~' || c == '?' || c == ':' || c == ';' || c == '{' || c == '}' || c == '(' || c == ')' || c == '[' || c == ']' || c == '#' || c == '<' || c == '>' || c == '\'' || c == '\"' || c == '\\' || c == ',' || c == '.' || c == '`' || c == '@');
     }
     enum Keywords
     {
@@ -95,21 +95,33 @@ namespace nda
             siz = len;
         }
 
-        bool nFinishReading() { return p < siz; }// Not finished reading 没有读完
+        bool nFinishReading() { return p < siz; } // Not finished reading 没有读完
 
-        int pChar()// Determine whether a character is a macro or identifier
+        int pChar() // Determine whether a character is a macro or identifier
         {
-            while(isBlankChar(a[p]))p++;
-            if(a[p]=='#')return 1;
-            else if(a[p]=='(')return 2;
-            else if(a[p]==')')return 3;
-            else if(a[p]=='{')return 4;
-            else if(a[p]=='}')return 5;
-            else if(a[p]=='[')return 6;
-            else if(a[p]==']')return 7;
-            else if(a[p]=='.')return 8;
-            else if(a[p]=='')
-            else return 0;
+            while (isBlankChar(a[p]))
+                p++;
+            if (a[p] == '#')
+            {
+                p++;
+                return 1;
+            }
+            else if (a[p] == '(')
+                return 2;
+            else if (a[p] == ')')
+                return 3;
+            else if (a[p] == '{')
+                return 4;
+            else if (a[p] == '}')
+                return 5;
+            else if (a[p] == '[')
+                return 6;
+            else if (a[p] == ']')
+                return 7;
+            else if (a[p] == '.')
+                return 8;
+            else
+                return 0;
         }
 
         string GetIdentifier()
@@ -199,6 +211,27 @@ namespace nda
                 return SLEEP;
             else
                 return nkw;
+        }
+
+        Macro GetMacroW() // 获取宏关键字
+        {
+            string s = GetIdentifier();
+            if (s == "include")
+                return INCLUDE;
+            else if (s == "define")
+                return DEFINE;
+            else if (s == "ifdef")
+                return IFDEF;
+            else if (s == "ifndef")
+                return IFNDEF;
+            else if (s == "ifcomenv")
+                return IFComEnv;
+            else if (s == "endif")
+                return ENDIF;
+            else if (s == "dcode")
+                return DCODE;
+            else
+                return nam;
         }
     };
 } // namespace nda
