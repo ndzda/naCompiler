@@ -9,6 +9,11 @@ void inline info(const char *s)
     printf("info: %s\n", s);
 }
 
+void inline infoL(const char *s)
+{
+    printf("%s\n", s);
+}
+
 void inline debug(const char *s)
 {
     printf("debug: %s\n", s);

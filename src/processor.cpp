@@ -46,12 +46,18 @@ namespace nda
         {
             while (src.nFinishReading())
             {
-                int x = pChar();
+                int x = src.pChar();
                 if (x == 0 || x == 2) // 执行语句
                 {
+                    pSSent();
                 }
                 else if (x == 1) // 宏定义
                 {
+                    Macro mw=src.GetMacroW();
+                    if(mw==nam)
+                    {
+                        infoL("Wrong macro definition.");
+                    }
                 }
             }
         }
