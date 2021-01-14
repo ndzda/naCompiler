@@ -9,7 +9,6 @@ namespace nda
     using namespace std;
 
     class NASReader;
-    enum Macro;
 
 
     class NASProcessor
