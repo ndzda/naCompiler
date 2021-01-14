@@ -1,11 +1,16 @@
 #include <map>
 #include <set>
 #include "NDArray.cpp"
+#include "util.cpp"
 #include "reader.cpp"
 
 namespace nda
 {
     using namespace std;
+
+    class NASReader;
+    enum Macro;
+
 
     class NASProcessor
     {
@@ -53,8 +58,8 @@ namespace nda
                 }
                 else if (x == 1) // 宏定义
                 {
-                    Macro mw=src.GetMacroW();
-                    if(mw==nam)
+                    Macro mw = src.GetMacroW();
+                    if (mw == nam)
                     {
                         infoL("Wrong macro definition.");
                     }
