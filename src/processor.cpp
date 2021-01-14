@@ -8,9 +8,6 @@ namespace nda
 {
     using namespace std;
 
-    class NASReader;
-
-
     class NASProcessor
     {
         struct nasClass
@@ -46,7 +43,7 @@ namespace nda
             }
         }
 
-        void loadReader(NASReader src)
+        void loadReader(NASReader *src)
         {
             while (src.nFinishReading())
             {
