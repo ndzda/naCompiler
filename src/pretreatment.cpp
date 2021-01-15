@@ -1,5 +1,4 @@
 #include <cstring>
-#include "NDArray.cpp"
 #include "reader.cpp"
 
 

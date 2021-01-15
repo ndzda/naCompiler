@@ -2,7 +2,6 @@
 #define NASRd
 
 #include <iostream>
-#include "NDArray.cpp"
 #include "util.cpp"
 
 namespace nda
