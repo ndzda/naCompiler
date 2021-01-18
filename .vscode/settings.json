@@ -10,6 +10,7 @@
         "cstdlib": "cpp",
         "memory": "cpp",
         "string_view": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "vector": "cpp"
     }
 }
