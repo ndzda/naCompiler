@@ -29,10 +29,10 @@ namespace nda
             vector<string> id; // identifier 标识符
             enum t             // Type 类型
             {
-                Assignment,        // Assignment 赋值
-                Rounding,          // Rounding 取整
-                BitwiseAssignment, // Bitwise assignment 按位赋值
-                BitwiseNegation,   // Bitwise negation 按位取反
+                Assignment,        // =  Assignment 赋值
+                Rounding,          // =l Rounding 取整
+                BitwiseAssignment, // = Bitwise assignment 按位赋值
+                BitwiseNegation,   // =~ Bitwise negation 按位取反
                 Negate,            // Negate 取反
                 AddUp,             // Add up 相加
                 Subtract,          // Subtract 相减
